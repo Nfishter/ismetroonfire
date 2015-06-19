@@ -1,0 +1,11 @@
+html { 
+  background: url(metro.png) no-repeat center center fixed; 
+  -webkit-background-size: length 100%;
+  -moz-background-size: length 100%;
+  -o-background-size: length 100%;
+  background-size: length 100%;
+}
+
+body {
+  background: none;
+}
