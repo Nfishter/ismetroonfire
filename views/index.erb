@@ -4,20 +4,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/style.css">
   <title>Is Metro On Fire?</title>
   <script>
 
     function getTweets () {
-      $.get( "/twitter", function( data ) { 
-        $.each(data, function (k,v) {
-          $('#tweets').append('<li>' + v.username + ': ' + v.tweet + '</li>');
-        })
-      });
+     $("h1").text('Suprisingly, no.');
     }
 
     $(document).ready(function() { getTweets(); })
@@ -25,8 +22,23 @@
   </script>
 </head>
 <body>
-  <h1 class="text-center">Most Likely</h1>
-
-  <ul id="tweets"></ul>
+  <div class="container">
+    <div class="row"> <h2 class="text-center">Is Metro On Fire?</h1> </div>
+    <div class="row"> <h1 class="text-center">Most Likely</h1> </div>
+    <div class="row">&nbsp;</div>
+    <div class="row text-center"> 
+      <i class="rd fa fa-circle"></i> 
+      <i class="yl fa fa-fire-extinguisher"></i> 
+      <i class="gr fa fa-circle"></i> 
+      <i class="bl fa fa-circle"></i> 
+      <i class="or fa fa-circle"></i> 
+      <i class="sv fa fa-circle"></i> 
+    </div>
+  </div>
+   <footer class="footer">
+      <div class="container">
+        <p class="text-muted">This website makes a reasonable guess if a WMATA line is on fire, smoking, or fire department activity. <br />Created by <a href="http://stocche.ro">Nick Stocchero</a></p>
+      </div>
+    </footer>
 </body>
 </html>

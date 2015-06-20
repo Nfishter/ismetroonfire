@@ -1,8 +1,13 @@
 class TwitterCalc
-  def work
-    sleep 5
-    puts "OK!"
+
+  def self.perform
+    work(nil)
   end
+
+  def work(param)
+    File.open('/tmp/resque', 'w') { |file| file.write(Time.now.to_s) }
+  end
+
 end
 
 
