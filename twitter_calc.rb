@@ -2,8 +2,6 @@ class TwitterCalc
 
   require 'twitter'
   require 'pg'
-  require 'sequel'
-  require 'sinatra/sequel'
   require './db/models'
 
   def self.perform

@@ -1,9 +1,9 @@
 require 'rack-google-analytics'
-require 'sequel'
 require 'sinatra'
 require 'sinatra/json'
-require 'sinatra/sequel'
 require './db/models'
+
+set :database, ENV['DATABASE_URL']
 
 use Rack::GoogleAnalytics, :tracker => ENV['GA_TRACKING_ID'] if ENV["RACK_ENV"] == 'production'
 
