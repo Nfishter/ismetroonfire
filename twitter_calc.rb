@@ -42,7 +42,6 @@ class TwitterCalc
           puts e
           raise e
         end
-        end
       end
     end
     File.open('./tmp/results.yml', 'w') {|f| f.write results.to_yaml }
