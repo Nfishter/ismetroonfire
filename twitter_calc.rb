@@ -36,8 +36,12 @@ class TwitterCalc
             sleep error.rate_limit.reset_in
             retry
           else
-            raise
+            raise error
           end
+        rescue Exception => e
+          puts e
+          raise e
+        end
         end
       end
     end
