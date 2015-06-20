@@ -16,9 +16,9 @@ class TwitterCalc
     end
 
     results = Hash.new
-    lines = [ %w{red rd} ,  %w{orange or} ] # ,  %w{blue bl} ,  %w{silver sv} ,  %w{green gr} ,  %w{yellow yl} ]
-    terms = %w{ @wmata @unsuckdcmetro #wmata }
-    heats = %w{ delay } #fire smoke }
+    lines = [ %w{red rd} ,  %w{orange or} ,  %w{blue bl} ,  %w{silver sv} ,  %w{green gr} ,  %w{yellow yl} ]
+    terms = %w{ unsuckdcmetro wmata }
+    heats = %w{ fire smoke }
     searches = terms.product(heats).map{|k| k.join(' ') }
 
     lines.product(searches).each do |line, term| 
@@ -30,7 +30,7 @@ class TwitterCalc
           num_attempts += 1
           puts "searching #{l} #{term}"
           search = client.search("#{l} #{term}", result_type: "recent")
-          results["#{line.first}"] = results["#{line.first}"] + search.to_a.keep_if {|t| t.created_at > Time.now - 60 * 60}.count
+          results["#{line.first}"] = results["#{line.first}"] + search.to_a.keep_if {|t| t.created_at > Time.now - 60 * 15}.count
         rescue Twitter::Error::TooManyRequests => error
           if num_attempts <= max_attempts
             sleep error.rate_limit.reset_in
