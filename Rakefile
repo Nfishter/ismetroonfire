@@ -15,7 +15,6 @@ namespace :resque do
     Resque.schedule = {'calculate' => {"cron" => "* * * * *", 
                                        "queue" => "cron", 
                                        "class" => "TwitterCalc", 
-                                       "args" => "work" , 
                                        "description" => "Calculates stats"} }
   end
 
