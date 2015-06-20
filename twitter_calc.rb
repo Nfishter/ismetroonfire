@@ -2,13 +2,16 @@ class TwitterCalc
 
   require 'twitter'
   require 'pg'
-  require './db/models'
-
+  require 'sequel'
+  
   def self.perform
     work
   end
 
   def self.work
+
+    Sequel.connect(ENV['DATABASE_URL'])
+    require './db/models'
 
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV['TWITTER_API_KEY']
@@ -47,7 +50,7 @@ class TwitterCalc
       end
     end
     puts results
-    Incidents.insert(:red => results['red'], :yellow => results['yellow'], :orange => results['orange'], :blue => results['blue'], :silver => results['silver'], :green => results['green'], :created_at => Time.now)
+    Incident.insert(:red => results['red'], :yellow => results['yellow'], :orange => results['orange'], :blue => results['blue'], :silver => results['silver'], :green => results['green'], :created_at => Time.now)
   end
 
 end
