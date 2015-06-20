@@ -33,9 +33,8 @@ class TwitterCalc
         num_attempts = 0
         begin
           num_attempts += 1
-          puts "searching #{l} #{term}"
           search = client.search("#{l} #{term}", result_type: "recent")
-          results["#{line.first}"] = results["#{line.first}"] + search.to_a.keep_if {|t| t.created_at > Time.now - 60 * 15}.count
+          results["#{line.first}"] = results["#{line.first}"] + search.to_a.keep_if {|t| t.created_at > Time.now - 60 * 60}.count
         rescue Twitter::Error::TooManyRequests => error
           if num_attempts <= max_attempts
             sleep error.rate_limit.reset_in
@@ -43,9 +42,6 @@ class TwitterCalc
           else
             raise error
           end
-        rescue Exception => e
-          puts e
-          raise e
         end
       end
     end
