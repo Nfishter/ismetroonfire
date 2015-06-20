@@ -1,7 +1,11 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.1.5'
 
+gem 'activesupport'
 gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'puma'
 gem 'twitter'
+gem 'resque'
+gem 'resque-scheduler'
+gem 'rake'
