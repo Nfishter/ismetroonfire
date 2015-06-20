@@ -18,7 +18,7 @@
       $.getJSON( "/fireapi", function( data ) {
         var items = [];
         $.each( data, function( key, val ) {
-          if (val > 2) {
+          if (val > 5) {
             $('#'+key).addClass("fire");
             response = 'yes' ;
           }
