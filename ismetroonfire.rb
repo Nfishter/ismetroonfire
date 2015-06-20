@@ -25,6 +25,7 @@ end
 get '/yes' do
   message = ["It looks like it", 
    "Twitter says yes",
+   "Yes",
    "Why, yes it is!",
    "I'm afraid so"].sample
    json  message: message
@@ -34,6 +35,7 @@ end
 get '/no' do
   message = ["Suprisingly, no", 
    "Nope!",
+   "Unfortunatley",
    "Doesn't look like it",
    "No"].sample
    json  message: message

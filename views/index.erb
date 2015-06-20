@@ -19,8 +19,7 @@
         var items = [];
         $.each( data, function( key, val ) {
           if (val > 2) {
-            $('#'+key).removeClass("fa-circle");
-            $('#'+key).addClass("fa-fire-extinguisher");
+            $('#'+key).addClass("fire");
             response = 'yes' ;
           }
         });
@@ -35,7 +34,8 @@
 <body>
   <div class="container">
     <div class="row"> <h2 class="text-center">Is Metro On Fire?</h1> </div>
-    <div class="row"> <h1 class="text-center">Most Likely</h1> </div>
+    <div class="row"> <h1 class="text-center">Let me check!</h1> </div>
+    <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
     <div class="row text-center"> 
       <i id="red" class="fa fa-circle"></i> 
