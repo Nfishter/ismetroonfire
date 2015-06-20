@@ -1,13 +1,17 @@
 class TwitterCalc
 
   require 'twitter'
-  require 'yaml'
+  require 'pg'
+  require 'sequel'
+  require 'sinatra/sequel'
+  require './db/models'
 
   def self.perform
     work
   end
 
   def self.work
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key        = ENV['TWITTER_API_KEY']
       config.consumer_secret     = ENV['TWITTER_API_SECRET']
@@ -44,7 +48,8 @@ class TwitterCalc
         end
       end
     end
-    File.open('./tmp/results.yml', 'w') {|f| f.write results.to_yaml }
+    puts results
+    Incidents.insert(:red => results['red'], :yellow => results['yellow'], :orange => results['orange'], :blue => results['blue'], :silver => results['silver'], :green => results['green'], :created_at => Time.now)
   end
 
 end

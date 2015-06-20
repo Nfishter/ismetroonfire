@@ -1,16 +1,23 @@
 require 'rack-google-analytics'
+require 'sequel'
 require 'sinatra'
 require 'sinatra/json'
-require 'yaml'
+require 'sinatra/sequel'
+require './db/models'
 
-use Rack::GoogleAnalytics, :tracker => ENV['GA_TRACKING_ID']
+use Rack::GoogleAnalytics, :tracker => ENV['GA_TRACKING_ID'] if ENV["RACK_ENV"] == 'production'
 
 get '/' do
   erb :index 
 end
 
 get '/fireapi' do
-  json YAML.load_file('./tmp/results.yml')
+  results = Hash.new
+  recent = Incidents.last
+  %w{red orange yellow green blue silver}.each do |line|
+    results["#{line}"] = recent.send(line) || 0
+  end
+  json results
 end
 
 get '/yes' do
