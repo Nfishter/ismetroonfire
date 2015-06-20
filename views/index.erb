@@ -14,7 +14,18 @@
   <script>
 
     function getTweets () {
-     $("h1").text('Suprisingly, no.');
+      
+      $.getJSON( "/no", function( data ) { $('h1').text(data.message); } );
+      $.getJSON( "/fireapi", function( data ) {
+        var items = [];
+        $.each( data, function( key, val ) {
+          if (val > 0) {
+            $('#'+key).removeClass("fa-circle");
+            $('#'+key).addClass("fa-fire-extinguisher");
+            $.getJSON( "/yes", function( data ) { $('h1').text(data.message); } );
+          }
+        });
+      });
     }
 
     $(document).ready(function() { getTweets(); })
@@ -27,12 +38,12 @@
     <div class="row"> <h1 class="text-center">Most Likely</h1> </div>
     <div class="row">&nbsp;</div>
     <div class="row text-center"> 
-      <i class="rd fa fa-circle"></i> 
-      <i class="yl fa fa-fire-extinguisher"></i> 
-      <i class="gr fa fa-circle"></i> 
-      <i class="bl fa fa-circle"></i> 
-      <i class="or fa fa-circle"></i> 
-      <i class="sv fa fa-circle"></i> 
+      <i id="red" class="fa fa-circle"></i> 
+      <i id="yellow" class="fa fa-circle"></i> 
+      <i id="green" class="fa fa-circle"></i> 
+      <i id="orange"class="fa fa-circle"></i> 
+      <i id="blue" class="fa fa-circle"></i> 
+      <i id="silver" class="fa fa-circle"></i> 
     </div>
   </div>
    <footer class="footer">
@@ -42,3 +53,5 @@
     </footer>
 </body>
 </html>
+
+
