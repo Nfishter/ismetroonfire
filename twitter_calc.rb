@@ -23,7 +23,7 @@ class TwitterCalc
 
     lines.product(searches).each do |line, term| 
       results["#{line.first}"] = 0
-      line.each do |l| 
+      line.each do |l|  
         max_attempts = 3
         num_attempts = 0
         begin
