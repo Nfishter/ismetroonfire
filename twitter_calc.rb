@@ -33,7 +33,7 @@ class TwitterCalc
         num_attempts = 0
         begin
           num_attempts += 1
-          search = client.search("#{l} #{term}", result_type: "recent")
+          search = client.search("#{l} #{term}", result_type: "recent", count: 100)
           results["#{line.first}"] = results["#{line.first}"] + search.to_a.keep_if {|t| t.created_at > Time.now - 60 * 60}.count
         rescue Twitter::Error::TooManyRequests => error
           if num_attempts <= max_attempts

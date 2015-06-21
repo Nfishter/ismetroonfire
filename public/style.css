@@ -19,6 +19,8 @@ h1 {
   font-size: 9em;
   text-shadow: 5px 5px 40px black; 
   background-color: transparent;
+  position: relative;
+  z-index: 100;
 }
 
 h2 {

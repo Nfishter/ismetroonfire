@@ -16,28 +16,16 @@ end
 get '/fireapi' do
   results = Hash.new
   recent = Incident.last
+  yes = ["It looks like it","Twitter says yes","Yes","Unfortunatley","Yep","Why, yes it is!","I'm afraid so"]
+  no = ["Suprisingly, no", "Nope!", "It is not", "Doesn't look like it", "No"] 
+  flag = false
   %w{red orange yellow green blue silver}.each do |line|
-    results["#{line}"] = recent.send(line) || 0
+    if recent.send(line) > 0
+      results["#{line}"] = recent.send(line)
+      flag = true
+    else
+      results["#{line}"] = 0
+    end
   end
-  json results
-end
-
-get '/yes' do
-  message = ["It looks like it", 
-   "Twitter says yes",
-   "Yes",
-   "Unfortunatley",
-   "Yep",
-   "Why, yes it is!",
-   "I'm afraid so"].sample
-   json  message: message
-end
-
-get '/no' do
-  message = ["Suprisingly, no", 
-   "Nope!",
-   "It is not",
-   "Doesn't look like it",
-   "No"].sample
-   json  message: message
+  json ({:counts => results, :message => (flag == true ? yes.sample : no.sample) } )
 end

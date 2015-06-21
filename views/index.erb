@@ -13,28 +13,25 @@
   <title>Is Metro On Fire?</title>
   <script>
 
-    function getTweets () {
-      var response = 'no';
-      $.getJSON( "/fireapi", function( data ) {
-        var items = [];
-        $.each( data, function( key, val ) {
-          if (val > 5) {
-            $('#'+key).addClass("fire");
-            response = 'yes' ;
-          }
-        });
-      });
-      $.getJSON( "/" + response , function( data ) { $('h1').text(data.message); } );
-    }
-
     $(document).ready(function() { getTweets(); })
+
+    function getTweets() {
+      console.log("checking fire");
+      $.getJSON( "/fireapi", function( data ) {
+        $.each( data.counts, function( key, val ) {
+          if (val > 5) { $('#'+key).addClass("fire"); }
+        });
+        $('h1').text(data.message);
+      });
+      return true;
+    }
 
   </script>
 </head>
 <body>
   <div class="container">
     <div class="row"> <h2 class="text-center">Is Metro On Fire?</h1> </div>
-    <div class="row"> <h1 class="text-center">Let me check!</h1> </div>
+    <div class="row"> <h1 class="text-center"></h1> </div>
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
     <div class="row text-center"> 
@@ -48,7 +45,7 @@
   </div>
   <footer class="footer">
     <div class="container">
-      <p class="text-muted">This website makes a reasonable guess if a WMATA line is on fire, smoking, or fire department activity. <br />Created by <a href="http://stocche.ro">Nick Stocchero</a></p>
+      <p class="text-muted">This website makes a reasonable guess if a WMATA line is on fire, smoking, or has fire department activity based on twitter. <br />Created by <a href="http://stocche.ro">Nick Stocchero</a></p>
     </div>
   </footer>
 </body>
