@@ -4,7 +4,7 @@ html {
   -webkit-background-size: length 100%;
   background-color: transparent;
   background-size: length 100%;
-  background: url(metro.png) no-repeat center center fixed; 
+  background: url(metro.jpg) no-repeat center center fixed; 
   min-height: 100%;
   position: relative;
 }
