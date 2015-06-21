@@ -46,6 +46,11 @@ class TwitterCalc
       end
     end
     puts results
+    bad_lines = results.map{|k,v| k if v > 5}.delete_if{|a| a.nil?}
+    if !bad_lines.empty?
+      openings = ["Oh shit. ", "Conflabbit! ", "Just great. ", "Nuts. "]
+      bad_lines.each{|l| client.update("#{openings.sample} The #{l} line is on fire.") }
+    end
     Incident.insert(:red => results['red'], :yellow => results['yellow'], :orange => results['orange'], :blue => results['blue'], :silver => results['silver'], :green => results['green'], :created_at => Time.now)
   end
 
